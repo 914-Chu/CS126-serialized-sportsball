@@ -5,7 +5,7 @@ public class Game {
     private Teams homeTeam;
     private Teams awayTeam;
     private String winner;
-    //private Goals goals;
+    private List<Goals> goals;
 
 
     private class Teams {
@@ -22,7 +22,7 @@ public class Game {
             private String hometown;
         }
     }
-/**
+
     private class Goals {
 
         private String teamName;
@@ -37,6 +37,5 @@ public class Game {
             private String receiver;
         }
     }
- */
 }
 
