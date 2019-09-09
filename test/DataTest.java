@@ -11,6 +11,11 @@ public class DataTest {
     }
 
     @Test
-    public void name() {
+    public void simple_serialize() {
+    }
+
+    @Test
+    public void simple_deserialize() {
+        
     }
 }

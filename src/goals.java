@@ -6,5 +6,14 @@ public class goals {
     private int timestamp;
     private String scorer;
     private String assist;
-    private List<passesData> list = new ArrayList<>();
+    private List<passesData> passesList;
+
+    public goals(String teamName, int timestamp, String scorer, String assist, List<passesData> passesList) {
+
+        this.teamName = teamName;
+        this.timestamp = timestamp;
+        this.scorer = scorer;
+        this.assist = assist;
+        this.passesList = new ArrayList<>(passesList);
+    }
 }
