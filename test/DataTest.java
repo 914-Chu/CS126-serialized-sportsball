@@ -9,4 +9,8 @@ public class DataTest {
         String testFileContents = Data.getFileContents("test_resources", "test_file_contents.txt");
         assertEquals("Gone, reduced to atoms", testFileContents);
     }
+
+    @Test
+    public void name() {
+    }
 }
