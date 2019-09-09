@@ -1,19 +1,19 @@
 import java.util.*;;
 
-public class goals {
+public class Goals {
 
     private String teamName;
     private int timestamp;
     private String scorer;
     private String assist;
-    private List<passesData> passesList;
+    private List<Passes> passes;
 
-    public goals(String teamName, int timestamp, String scorer, String assist, List<passesData> passesList) {
+    public Goals(String teamName, int timestamp, String scorer, String assist, List<Passes> passes) {
 
         this.teamName = teamName;
         this.timestamp = timestamp;
         this.scorer = scorer;
         this.assist = assist;
-        this.passesList = new ArrayList<>(passesList);
+        this.passes = new ArrayList<>(passes);
     }
 }

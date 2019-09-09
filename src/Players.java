@@ -1,4 +1,4 @@
-public class players {
+public class Players {
 
     private String name;
     private int age;
@@ -6,7 +6,7 @@ public class players {
     private String position;
     private String hometown;
 
-    public players(String name, int age, int jerseyNumber, String position, String hometown) {
+    public Players(String name, int age, int jerseyNumber, String position, String hometown) {
 
         this.name = name;
         this.age = age;

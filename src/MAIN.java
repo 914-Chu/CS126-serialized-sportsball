@@ -11,15 +11,16 @@ public class MAIN {
 
     private static void serialize() {
 
-        players p1 = new players("Joyce", 21, 1, "none", "Taiwan");
-        players p2 = new players( "Mercedes Jackson", 24, 13, "Midfielder", "Urbana");
-        players p3 = new players("William Glass", 21, 16, "Midfielder", "Champaign");
+        Players p1 = new Players("Joyce", 21, 1, "none", "Taiwan");
+        Players p2 = new Players( "Mercedes Jackson", 24, 13, "Midfielder", "Urbana");
+        Players p3 = new Players("William Glass", 21, 16, "Midfielder", "Champaign");
 
-        List<players> hT = Arrays.asList(p1, p2, p3);
-        team homeTeam = new team("Champaign United", hT);
+        List<Players> hT = Arrays.asList(p1, p2, p3);
+        Team homeTeam = new Team("Champaign United", hT);
+        Game g1 = new Game(homeTeam);
 
         Gson gson = new Gson();
-        String json = gson.toJson(homeTeam);
+        String json = gson.toJson(g1);
 
     }
 
@@ -28,7 +29,7 @@ public class MAIN {
         String playerJson = "{'name': 'Tim','age':17,'jerseyNumber':99,'position':'none','hometown':'Taiwan'}";
 
         Gson gson = new Gson();
-        players p2 = gson.fromJson(playerJson, players.class);
+        Players p2 = gson.fromJson(playerJson, Players.class);
     }
 
 
