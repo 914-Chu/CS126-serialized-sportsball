@@ -16,6 +16,6 @@ public class DataTest {
 
     @Test
     public void simple_deserialize() {
-        
+
     }
 }
