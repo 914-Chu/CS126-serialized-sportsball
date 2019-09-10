@@ -23,7 +23,7 @@ public class Game {
         return goals;
     }
 
-    private class Teams {
+    public class Teams {
 
         private String name;
         private List<Player> players ;
@@ -36,7 +36,7 @@ public class Game {
             return players;
         }
 
-        private class Player {
+        public class Player {
 
             private String name;
             private int age;
@@ -66,7 +66,7 @@ public class Game {
         }
     }
 
-    private class Goals {
+    public class Goals {
 
         private String teamName;
         private int timestamp;
