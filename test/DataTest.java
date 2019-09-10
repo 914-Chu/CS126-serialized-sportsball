@@ -48,7 +48,7 @@ public class DataTest {
     public void checkHomeTeamPlayers() {
 
         Game deserialized = deserialize();
-        List<Game.Teams.Player> playerList = deserialized.getHomeTeam().getPlayerList();
+        List<Player> playerList = deserialized.getHomeTeam().getPlayerList();
         assertEquals("Mercedes Jackson", playerList.get(0).getPlayerName());
         assertEquals(26, playerList.get(3).getPlayerAge());
         assertEquals(27, playerList.get(7).getPlayerJerseyNumber());
@@ -68,7 +68,7 @@ public class DataTest {
     public void checkAwayTeamPlayers() {
 
         Game deserialized = deserialize();
-        List<Game.Teams.Player> playerList = deserialized.getAwayTeam().getPlayerList();
+        List<Player> playerList = deserialized.getAwayTeam().getPlayerList();
         assertEquals("Stevie Patrick", playerList.get(1).getPlayerName());
         assertEquals(25, playerList.get(2).getPlayerAge());
         assertEquals(13, playerList.get(5).getPlayerJerseyNumber());
@@ -88,7 +88,7 @@ public class DataTest {
 
         Game deserialized = deserialize();
         final int POSITION = 17;
-        List<Game.Goals> goalList = deserialized.getGoals();
+        List<Goals> goalList = deserialized.getGoals();
 
         assertEquals(19, goalList.size());
         assertEquals(80, goalList.get(POSITION).getTimestamp());
@@ -98,9 +98,9 @@ public class DataTest {
     public void checkPasses() {
 
         Game deserialized = deserialize();
-        List<Game.Goals> goalList = deserialized.getGoals();
+        List<Goals> goalList = deserialized.getGoals();
         int GOAL = rand.nextInt(goalList.size());
-        List<Game.Goals.Passes> passesList = goalList.get(GOAL).getPassesList();
+        List<Passes> passesList = goalList.get(GOAL).getPassesList();
         int LAST_PASS = passesList.size() - 1;
         String SCORER = goalList.get(GOAL).getScorer();
         String ASSIST = goalList.get(GOAL).getAssist();

@@ -12,7 +12,7 @@ public class MAIN {
         String testFileContents = Data.getFileContents("test_resources", "sportsballtest");
         Gson gson = new Gson();
         Game game = gson.fromJson(testFileContents, Game.class);
-        List<Game.Goals> goalsList = game.getGoals();
+        List<Goals> goalsList = game.getGoals();
 
        // game.goalsInCertainTime(goalsList, TIMESTAMP);
 

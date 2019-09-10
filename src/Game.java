@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class Game {
 
     private Teams homeTeam;
@@ -15,93 +16,8 @@ public class Game {
 
     public List<Goals> getGoals() { return goals; }
 
-    public class Teams {
-
-        private String name;
-        private List<Player> players;
-
-        public String getTeamName() {
-            return name;
-        }
-
-        public List<Player> getPlayerList() {
-            return players;
-        }
-
-        public class Player {
-
-            private String name;
-            private int age;
-            private int jerseyNumber;
-            private String position;
-            private String hometown;
-
-            public String getPlayerName() {
-                return name;
-            }
-
-            public int getPlayerAge() {
-                return age;
-            }
-
-            public int getPlayerJerseyNumber() {
-                return jerseyNumber;
-            }
-
-            public String getPlayerPosition() {
-                return position;
-            }
-
-            public String getPlayerHometown() {
-                return hometown;
-            }
-        }
-    }
-
-    public class Goals {
-
-        private String team;
-        private int timestamp;
-        private String scorer;
-        private String assist;
-        private List<Passes> passes;
-
-        public String getTeamName() {
-            return team;
-        }
-
-        public int getTimestamp() {
-            return timestamp;
-        }
-
-        public String getScorer() {
-            return scorer;
-        }
-
-        public String getAssist() {
-            return assist;
-        }
-
-        public List<Passes> getPassesList() {
-            return passes;
-        }
-
-        public class Passes {
-
-            private String passer;
-            private String receiver;
-
-            public String getPasser() {
-                return passer;
-            }
-
-            public String getReceiver() {
-                return receiver;
-            }
-        }
-    }
     /**
-     *  filtering functions
+     *  functions
      */
 
     public void goalsInCertainTime(List<Goals> goalsList, int currentTime) {
@@ -192,7 +108,7 @@ public class Game {
         int pass = 0;
         int goal = 0;
 
-        for(Game.Goals g : goalsList) {
+        for(Goals g : goalsList) {
 
             if(g.getTeamName().equals(team)) {
 
@@ -211,15 +127,15 @@ public class Game {
         int total = 0;
         int min, max;
 
-
+    
     }
 
     private int receiveCount(List<Goals> goalsList, String player) {
 
         int result = 0;
-        for(Game.Goals goal : goalsList) {
+        for(Goals goal : goalsList) {
 
-            for(Game.Goals.Passes pass : goal.getPassesList()) {
+            for(Passes pass : goal.getPassesList()) {
 
                 if(pass.getReceiver().equals(player)) {
 
@@ -234,9 +150,9 @@ public class Game {
     private int passCount(List<Goals> goalsList, String player) {
 
         int result = 0;
-        for(Game.Goals goal : goalsList) {
+        for(Goals goal : goalsList) {
 
-            for(Game.Goals.Passes pass : goal.getPassesList()) {
+            for(Passes pass : goal.getPassesList()) {
 
                 if(pass.getPasser().equals(player)) {
 
@@ -251,7 +167,7 @@ public class Game {
     private int scoreCount(List<Goals> goalsList, String player) {
 
         int result = 0;
-        for(Game.Goals goal : goalsList) {
+        for(Goals goal : goalsList) {
 
             if(goal.getScorer().equals(player)) {
 
@@ -265,7 +181,7 @@ public class Game {
     private int assistCount(List<Goals> goalsList, String player) {
 
         int result = 0;
-        for(Game.Goals goal : goalsList) {
+        for(Goals goal : goalsList) {
 
             if(goal.getAssist() != null && goal.getAssist().equals(player)) {
 
