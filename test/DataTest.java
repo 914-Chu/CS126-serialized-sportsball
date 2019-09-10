@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 public class DataTest {
 
     private static Gson gson;
+    Random rand = new Random();
 
     @Before
     public void setUp() throws Exception {
@@ -19,6 +20,13 @@ public class DataTest {
 
         String testFileContents = Data.getFileContents("test_resources", "test_file_contents.txt");
         assertEquals("Gone, reduced to atoms", testFileContents);
+    }
+
+    @Test
+    public void deserializeNull() {
+
+        Game g = gson.fromJson("", Game.class);
+        assertEquals(null, g);
     }
 
     @Test
@@ -75,7 +83,35 @@ public class DataTest {
         assertEquals("Urbana International", deserialized.getWinner());
     }
 
+    @Test
+    public void checkGoals() {
 
+        Game deserialized = deserialize();
+        final int POSITION = 17;
+        List<Game.Goals> goalList = deserialized.getGoals();
+
+        assertEquals(19, goalList.size());
+        assertEquals(80, goalList.get(POSITION).getTimestamp());
+    }
+
+    @Test
+    public void checkPasses() {
+
+        Game deserialized = deserialize();
+        List<Game.Goals> goalList = deserialized.getGoals();
+        int GOAL = rand.nextInt(goalList.size());
+        List<Game.Goals.Passes> passesList = goalList.get(GOAL).getPassesList();
+        int LAST_PASS = passesList.size() - 1;
+        String SCORER = goalList.get(GOAL).getScorer();
+        String ASSIST = goalList.get(GOAL).getAssist();
+        String LAST_RECEIVER = passesList.get(LAST_PASS).getReceiver();
+        String LAST_PASSER = passesList.get(LAST_PASS).getPasser();;
+
+        assertEquals(SCORER, LAST_RECEIVER);
+        if(ASSIST != null) {
+            assertEquals(ASSIST, LAST_PASSER);
+        }
+    }
 
     private static Game deserialize() {
 

@@ -94,7 +94,7 @@ public class Game {
             return passes;
         }
 
-        private class Passes {
+        public class Passes {
 
             private String passer;
             private String receiver;
