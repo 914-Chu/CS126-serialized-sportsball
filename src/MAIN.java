@@ -12,21 +12,20 @@ public class MAIN {
         String testFileContents = Data.getFileContents("test_resources", "sportsballtest");
         Gson gson = new Gson();
         Game game = gson.fromJson(testFileContents, Game.class);
-        List<Goals> goalsList = game.getGoals();
 
-       // game.goalsInCertainTime(goalsList, TIMESTAMP);
+        //game.goalsInCertainTime(TIMESTAMP);
 
-       // game.goalsWithoutAssist(goalsList);
+        //game.goalsWithoutAssist();
 
-        //game.goalsDetail(goalsList);
+        //game.goalsDetail();
 
-        //game.playerStats(goalsList, PLAYER);
+        //game.playerStats(PLAYER);
 
-        //game.passesPerGoal(goalsList, TIMESTAMP);
+        //game.passesPerGoal(TIMESTAMP);
 
-        //game.teamStats(goalsList, HOMETEAM);
+        //game.teamStats(HOMETEAM);
 
-        game.ageStats(goalsList, AWAYTEAM);
+        //game.ageStats(AWAYTEAM);
 
     }
 
