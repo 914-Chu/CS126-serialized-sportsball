@@ -26,7 +26,7 @@ public class Game {
     public class Teams {
 
         private String name;
-        private List<Player> players ;
+        private List<Player> players;
 
         public String getTeamName() {
             return name;
@@ -49,7 +49,7 @@ public class Game {
             }
 
             public int getPlayerAge() {
-                return  age;
+                return age;
             }
 
             public int getPlayerJerseyNumber() {
@@ -107,6 +107,61 @@ public class Game {
                 return receiver;
             }
         }
+    }
+    /**
+     *  filtering functions
+     */
+
+    public List<Integer> goalsInCertainTime(List<Goals> goalsList, int currentTime) {
+
+        List<Integer> result = new ArrayList<>();
+
+        for(int i = 0; i < goalsList.size(); i ++) {
+
+            int timestamp = goalsList.get(i).getTimestamp();
+
+            if(timestamp <= currentTime) {
+                result.add(timestamp);
+            }
+        }
+
+        return result;
+    }
+
+    public List<Integer> goalsWithoutAssist(List<Goals> goalsList) {
+
+        List<Integer> result = new ArrayList<>();
+
+        for(int i = 0; i < goalsList.size(); i ++) {
+
+            String assist = goalsList.get(i).getAssist();
+            int timestamp = goalsList.get(i).getTimestamp();
+
+            if(assist == null) {
+                result.add(timestamp);
+            }
+        }
+
+        return result;
+    }
+
+    public Map<Integer, List<String>> goalsDetail(List<Goals> goalsList) {
+
+        Map<Integer, List<String>> result = new TreeMap<>();
+
+        for(int i = 0; i < goalsList.size(); i ++) {
+
+            List<String> temp = new ArrayList<>();
+            int timestamp = goalsList.get(i).getTimestamp();
+            String scorer = goalsList.get(i).getScorer();
+            String assist = goalsList.get(i).getAssist();
+            temp.add(scorer);
+            temp.add(assist);
+
+            result.put(timestamp, temp);
+        }
+
+        return result;
     }
 }
 

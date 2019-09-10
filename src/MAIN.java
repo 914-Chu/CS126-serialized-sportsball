@@ -3,18 +3,23 @@ import java.util.*;
 
 public class MAIN {
 
+    public static final int TIMESTAMP = 85;
+
     public static void main(String[] args) {
 
-         deserialize();
-    }
-
-    public static Game deserialize() {
-
-        String game = Data.getFileContents("test_resources", "sportsballtest");
-
+        String testFileContents = Data.getFileContents("test_resources", "sportsballtest");
         Gson gson = new Gson();
-        Game g = gson.fromJson(game, Game.class);
+        Game game = gson.fromJson(testFileContents, Game.class);
+        List<Game.Goals> goalsList = game.getGoals();
 
-        return g;
+        List<Integer> currentGoal = game.goalsInCertainTime(goalsList, TIMESTAMP);
+        System.out.println(currentGoal);
+
+        List<Integer> goalsWithoutAssist = game.goalsWithoutAssist(goalsList);
+        System.out.println(goalsWithoutAssist);
+
+        Map<Integer, List<String>> goalsDetail = game.goalsDetail(goalsList);
+
     }
+
 }
