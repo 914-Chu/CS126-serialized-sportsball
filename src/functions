@@ -1,10 +1,10 @@
 List of all goals with timestamp V
-List of goals without assist
-map of goals(time stamp and scorer list)
+List of goals without assist V
+map of goals(time stamp and scorer list) V
 
-map of player name and receive numbers
-map of player name and pass numbers
-map of player name and score numbers
-array of team stats(receive, pass, score)
+map of player name and receive, pass, score V
+numbers of passes in certain goal V
+array of team stats(receive, pass, score) V
+array of team age stats
 
 

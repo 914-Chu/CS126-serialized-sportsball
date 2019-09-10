@@ -3,22 +3,30 @@ import java.util.*;
 
 public class MAIN {
 
-    public static final int TIMESTAMP = 85;
-
     public static void main(String[] args) {
 
+        int TIMESTAMP = 40;
+        String PLAYER = "Steven White";
+        String HOMETEAM = "Champaign United";
+        String AWAYTEAM = "Urbana International";
         String testFileContents = Data.getFileContents("test_resources", "sportsballtest");
         Gson gson = new Gson();
         Game game = gson.fromJson(testFileContents, Game.class);
         List<Game.Goals> goalsList = game.getGoals();
 
-        List<Integer> currentGoal = game.goalsInCertainTime(goalsList, TIMESTAMP);
-        System.out.println(currentGoal);
+       // game.goalsInCertainTime(goalsList, TIMESTAMP);
 
-        List<Integer> goalsWithoutAssist = game.goalsWithoutAssist(goalsList);
-        System.out.println(goalsWithoutAssist);
+       // game.goalsWithoutAssist(goalsList);
 
-        Map<Integer, List<String>> goalsDetail = game.goalsDetail(goalsList);
+        //game.goalsDetail(goalsList);
+
+        //game.playerStats(goalsList, PLAYER);
+
+        //game.passesPerGoal(goalsList, TIMESTAMP);
+
+        //game.teamStats(goalsList, HOMETEAM);
+
+        game.ageStats(goalsList, AWAYTEAM);
 
     }
 

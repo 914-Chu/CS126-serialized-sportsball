@@ -7,21 +7,13 @@ public class Game {
     private String winner;
     private List<Goals> goals;
 
-    public Teams getHomeTeam() {
-        return homeTeam;
-    }
+    public Teams getHomeTeam() { return homeTeam; }
 
-    public Teams getAwayTeam() {
-        return awayTeam;
-    }
+    public Teams getAwayTeam() { return awayTeam; }
 
-    public String getWinner() {
-        return winner;
-    }
+    public String getWinner() { return winner; }
 
-    public List<Goals> getGoals() {
-        return goals;
-    }
+    public List<Goals> getGoals() { return goals; }
 
     public class Teams {
 
@@ -68,14 +60,14 @@ public class Game {
 
     public class Goals {
 
-        private String teamName;
+        private String team;
         private int timestamp;
         private String scorer;
         private String assist;
         private List<Passes> passes;
 
         public String getTeamName() {
-            return teamName;
+            return team;
         }
 
         public int getTimestamp() {
@@ -112,7 +104,7 @@ public class Game {
      *  filtering functions
      */
 
-    public List<Integer> goalsInCertainTime(List<Goals> goalsList, int currentTime) {
+    public void goalsInCertainTime(List<Goals> goalsList, int currentTime) {
 
         List<Integer> result = new ArrayList<>();
 
@@ -125,10 +117,11 @@ public class Game {
             }
         }
 
-        return result;
+        System.out.println("Goals before " + currentTime + ":");
+        System.out.println(result);
     }
 
-    public List<Integer> goalsWithoutAssist(List<Goals> goalsList) {
+    public void goalsWithoutAssist(List<Goals> goalsList) {
 
         List<Integer> result = new ArrayList<>();
 
@@ -142,10 +135,11 @@ public class Game {
             }
         }
 
-        return result;
+        System.out.println("Goals by single player: ");
+        System.out.println(result);
     }
 
-    public Map<Integer, List<String>> goalsDetail(List<Goals> goalsList) {
+    public void goalsDetail(List<Goals> goalsList) {
 
         Map<Integer, List<String>> result = new TreeMap<>();
 
@@ -161,7 +155,125 @@ public class Game {
             result.put(timestamp, temp);
         }
 
+        for (Map.Entry<Integer, List<String>> entry : result.entrySet()) {
+            System.out.println(String.format("Timestamp:%3s Scorer: %-15s  Assist: %3s" , entry.getKey(), entry.getValue().get(0), entry.getValue().get(1)));
+        }
+    }
+
+    public void playerStats(List<Goals> goalsList, String player) {
+
+        int receive = receiveCount(goalsList, player);
+        int pass = passCount(goalsList, player);
+        int score = scoreCount(goalsList, player);
+        int assist = assistCount(goalsList, player);
+
+        System.out.println(player + ":\n" +
+                           "receive: " + receive +
+                           "\npass: " + pass +
+                           "\nscore: " + score +
+                           "\nassist: " + assist);
+    }
+
+    public void passesPerGoal(List<Goals> goalsList, int timestamp) {
+
+        int result = 0;
+
+        for(Goals g : goalsList) {
+            if (g.getTimestamp() == timestamp) {
+
+                result = g.getPassesList().size();
+            }
+        }
+        System.out.println(result + " passes at timestamp " + timestamp);
+    }
+
+    public void teamStats(List<Goals> goalsList, String team) {
+
+        int pass = 0;
+        int goal = 0;
+
+        for(Game.Goals g : goalsList) {
+
+            if(g.getTeamName().equals(team)) {
+
+                pass += g.getPassesList().size();
+                goal ++;
+            }
+        }
+
+        System.out.println("Team: " + team +
+                           "\nTotal goals: " + goal +
+                           "\nTotal passes: " + pass);
+    }
+
+    public void ageStats(List<Goals> goalsList, String team) {
+
+        int total = 0;
+        int min, max;
+
+
+    }
+
+    private int receiveCount(List<Goals> goalsList, String player) {
+
+        int result = 0;
+        for(Game.Goals goal : goalsList) {
+
+            for(Game.Goals.Passes pass : goal.getPassesList()) {
+
+                if(pass.getReceiver().equals(player)) {
+
+                    result++;
+                }
+            }
+        }
+
         return result;
     }
-}
 
+    private int passCount(List<Goals> goalsList, String player) {
+
+        int result = 0;
+        for(Game.Goals goal : goalsList) {
+
+            for(Game.Goals.Passes pass : goal.getPassesList()) {
+
+                if(pass.getPasser().equals(player)) {
+
+                    result++;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private int scoreCount(List<Goals> goalsList, String player) {
+
+        int result = 0;
+        for(Game.Goals goal : goalsList) {
+
+            if(goal.getScorer().equals(player)) {
+
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    private int assistCount(List<Goals> goalsList, String player) {
+
+        int result = 0;
+        for(Game.Goals goal : goalsList) {
+
+            if(goal.getAssist() != null && goal.getAssist().equals(player)) {
+
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+}
