@@ -7,11 +7,34 @@ public class Game {
     private String winner;
     private List<Goals> goals;
 
+    public Teams getHomeTeam() {
+        return homeTeam;
+    }
+
+    public Teams getAwayTeam() {
+        return awayTeam;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public List<Goals> getGoals() {
+        return goals;
+    }
 
     private class Teams {
 
         private String name;
         private List<Player> players ;
+
+        public String getTeamName() {
+            return name;
+        }
+
+        public List<Player> getPlayerList() {
+            return players;
+        }
 
         private class Player {
 
@@ -20,6 +43,26 @@ public class Game {
             private int jerseyNumber;
             private String position;
             private String hometown;
+
+            public String getPlayerName() {
+                return name;
+            }
+
+            public int getPlayerAge() {
+                return  age;
+            }
+
+            public int getPlayerJerseyNumber() {
+                return jerseyNumber;
+            }
+
+            public String getPlayerPosition() {
+                return position;
+            }
+
+            public String getPlayerHometown() {
+                return hometown;
+            }
         }
     }
 
@@ -31,10 +74,38 @@ public class Game {
         private String assist;
         private List<Passes> passes;
 
+        public String getTeamName() {
+            return teamName;
+        }
+
+        public int getTimestamp() {
+            return timestamp;
+        }
+
+        public String getScorer() {
+            return scorer;
+        }
+
+        public String getAssist() {
+            return assist;
+        }
+
+        public List<Passes> getPassesList() {
+            return passes;
+        }
+
         private class Passes {
 
             private String passer;
             private String receiver;
+
+            public String getPasser() {
+                return passer;
+            }
+
+            public String getReceiver() {
+                return receiver;
+            }
         }
     }
 }
