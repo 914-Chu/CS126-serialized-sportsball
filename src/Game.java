@@ -27,9 +27,6 @@ public class Game {
                 result.add(timestamp);
             }
         }
-
-        System.out.println("Goals before " + currentTime + ":");
-        System.out.println(result);
         return result;
     }
 
@@ -46,9 +43,6 @@ public class Game {
                 result.add(timestamp);
             }
         }
-
-        System.out.println("Goals by single player: ");
-        System.out.println(result);
         return result;
     }
 
@@ -65,10 +59,6 @@ public class Game {
 
             result.put(timestamp, temp);
         }
-
-        for (Map.Entry<Integer, List<String>> entry : result.entrySet()) {
-            System.out.println(String.format("Timestamp:%-3s Scorer: %-15s  Assist: %3s" , entry.getKey(), entry.getValue().get(0), entry.getValue().get(1)));
-        }
         return result;
     }
 
@@ -80,8 +70,6 @@ public class Game {
                 positionList.add(player.getPlayerName());
             }
         }
-
-        System.out.println(position + ": " +positionList);
         return positionList;
     }
 
@@ -99,9 +87,6 @@ public class Game {
         result.put("Score", score);
         result.put("Assist", assist);
 
-        for (Map.Entry<String, Integer> entry : result.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
         return result;
     }
 
@@ -115,7 +100,6 @@ public class Game {
                 result = g.getPassesList().size();
             }
         }
-        System.out.println(result + " passes at timestamp " + timestamp);
         return result;
     }
 
@@ -128,9 +112,6 @@ public class Game {
                 goal ++;
             }
         }
-
-        System.out.println("Team: " + team.getTeamName());
-        System.out.println("Total goals: " + goal);
         return goal;
     }
 
@@ -153,11 +134,6 @@ public class Game {
                 rank.put(goals, temp);
             }
         }
-
-        System.out.println("Goals:     " + "Players:" );
-        for (Map.Entry<Integer, List<String>> entry : rank.entrySet()) {
-            System.out.println(String.format(entry.getKey() + "          " + entry.getValue()));
-        }
         return rank;
     }
 
@@ -171,7 +147,6 @@ public class Game {
                 }
             }
         }
-
         return result;
     }
 
