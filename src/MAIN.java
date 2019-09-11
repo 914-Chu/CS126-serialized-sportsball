@@ -5,7 +5,7 @@ public class MAIN {
 
     public static void main(String[] args) {
 
-        int TIMESTAMP = 40;
+        int TIMESTAMP = 44;
         String PLAYER = "Steven White";
         String POSITION = "Defender";
         String testFileContents = Data.getFileContents("test_resources", "sportsballtest");
@@ -17,25 +17,25 @@ public class MAIN {
          *  filtering functions
          */
 
-        //game.goalsInCertainTime(TIMESTAMP);
+        //List<Integer> result1 = game.goalsInCertainTime(TIMESTAMP);
 
-        //game.goalsWithoutAssist();
+        //List<Integer> result2 = game.goalsWithoutAssist();
 
-        //game.goalsDetail();
+        //Map<Integer, List<String>> result3 = game.goalsDetail();
 
-        //game.positionList(TEAM, POSITION);
+        //List<String> result4 = game.positionList(TEAM, POSITION);
 
         /**
          *  analysis functions
          */
 
-        //game.playerStats(PLAYER);
+        //Map<String, Integer> result5 = game.playerStats(PLAYER);
 
-        //game.passesPerGoal(TIMESTAMP);
+        //int result6 = game.passesPerGoal(TIMESTAMP);
 
-        //game.teamStats(TEAM);
+        //int result7 = game.teamTotalGoals(TEAM);
 
-        //game.rankByGoals();
+        Map<Integer, List<String>> result8 = game.rankByGoals();
 
     }
 

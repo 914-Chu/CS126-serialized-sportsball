@@ -119,7 +119,65 @@ public class DataTest {
 
         Game deserialized = deserialize();
         int TIMESTAMP = 50;
-        assertEquals(11, deserialized.goalsInCertainTime(TIMESTAMP));
+        assertEquals(11, deserialized.goalsInCertainTime(TIMESTAMP).size());
+    }
+
+    @Test
+    public void testGoalsWithoutAssist() throws Exception {
+
+        Game deserialized = deserialize();
+        assertEquals(8, deserialized.goalsWithoutAssist().size());
+    }
+
+    @Test
+    public void testGoalsDetail() throws Exception {
+
+        Game deserialized = deserialize();
+        int TIMESTAMP = 77;
+        String EXPECTSCORER = "Mary Kohnz";
+        String EXPECTASSIST = null;
+        assertEquals(EXPECTSCORER, deserialized.goalsDetail().get(TIMESTAMP).get(0));
+        assertEquals(EXPECTASSIST, deserialized.goalsDetail().get(TIMESTAMP).get(1));
+    }
+
+    @Test
+    public void testPositionList() throws Exception {
+
+        Game deserialized = deserialize();
+        Teams TEAM = deserialized.getHomeTeam();
+        String POSITION = "Midfielder";
+        List<String> EXPECT = Arrays.asList("Mercedes Jackson", "William Glass", "Walter Grulkey", "Dale Rose", "Guadalupe Nelson");
+        assertEquals(EXPECT, deserialized.positionList(TEAM, POSITION));
+    }
+
+    @Test
+    public void testPlayerStats() throws Exception {
+
+        Game deserialized = deserialize();
+        String PLAYER = "Connie Marquez";
+        int ACTUAL = deserialized.playerStats(PLAYER).get("Assist");
+        int EXPECT_RECEIVE = 1;
+        int EXPECT_PASS = 1;
+        int EXPECT_SCORE = 1;
+        int EXPECT_ASSIST = 0;
+
+        assertEquals(EXPECT_ASSIST, ACTUAL);
+    }
+
+    @Test
+    public void testPassesPerGoal() throws Exception {
+
+        Game deserialized = deserialize();
+        int TIMESTAMP = 44;
+        assertEquals(2, deserialized.passesPerGoal(TIMESTAMP));
+    }
+
+    @Test
+    public void testTeamStats() throws Exception {
+
+        Game deserialized = deserialize();
+        Teams TEAM = deserialized.getHomeTeam();
+        assertEquals(9, deserialized.teamTotalGoals(TEAM));
     }
 
     private static Game deserialize() {

@@ -15,7 +15,7 @@ public class Game {
 
     // Filtering Functions
 
-    public void goalsInCertainTime(int currentTime) {
+    public List<Integer> goalsInCertainTime(int currentTime) {
 
         List<Integer> result = new ArrayList<>();
 
@@ -30,9 +30,10 @@ public class Game {
 
         System.out.println("Goals before " + currentTime + ":");
         System.out.println(result);
+        return result;
     }
 
-    public void goalsWithoutAssist() {
+    public List<Integer> goalsWithoutAssist() {
 
         List<Integer> result = new ArrayList<>();
 
@@ -48,30 +49,30 @@ public class Game {
 
         System.out.println("Goals by single player: ");
         System.out.println(result);
+        return result;
     }
 
-    public void goalsDetail() {
+    public Map<Integer, List<String>> goalsDetail() {
 
         Map<Integer, List<String>> result = new TreeMap<>();
 
         for(int i = 0; i < goals.size(); i ++) {
 
-            List<String> temp = new ArrayList<>();
             int timestamp = goals.get(i).getTimestamp();
             String scorer = goals.get(i).getScorer();
             String assist = goals.get(i).getAssist();
-            temp.add(scorer);
-            temp.add(assist);
+            List<String> temp = Arrays.asList(scorer, assist);
 
             result.put(timestamp, temp);
         }
 
         for (Map.Entry<Integer, List<String>> entry : result.entrySet()) {
-            System.out.println(String.format("Timestamp:%3s Scorer: %-15s  Assist: %3s" , entry.getKey(), entry.getValue().get(0), entry.getValue().get(1)));
+            System.out.println(String.format("Timestamp:%-3s Scorer: %-15s  Assist: %3s" , entry.getKey(), entry.getValue().get(0), entry.getValue().get(1)));
         }
+        return result;
     }
 
-    public void positionList(Teams team, String position) {
+    public List<String> positionList(Teams team, String position) {
 
         List<String> positionList = new ArrayList<>();
         for(Player player : team.getPlayerList()) {
@@ -81,26 +82,30 @@ public class Game {
         }
 
         System.out.println(position + ": " +positionList);
+        return positionList;
     }
 
     // Analysis Functions
 
-    public void playerStats(String player) {
+    public Map<String, Integer> playerStats(String player) {
 
         int receive = receiveCount(player);
         int pass = passCount(player);
         int score = scoreCount(player);
-        int assist = assistCount(
-                player);
+        int assist = assistCount(player);
+        Map<String, Integer> result = new TreeMap<>();
+        result.put("Receive", receive);
+        result.put("Pass", pass);
+        result.put("Score", score);
+        result.put("Assist", assist);
 
-        System.out.println(player + ":\n" +
-                           "receive: " + receive +
-                           "\npass: " + pass +
-                           "\nscore: " + score +
-                           "\nassist: " + assist);
+        for (Map.Entry<String, Integer> entry : result.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        return result;
     }
 
-    public void passesPerGoal(int timestamp) {
+    public int passesPerGoal(int timestamp) {
 
         int result = 0;
 
@@ -111,34 +116,30 @@ public class Game {
             }
         }
         System.out.println(result + " passes at timestamp " + timestamp);
+        return result;
     }
 
-    public void teamStats(Teams team) {
+    public int teamTotalGoals(Teams team) {
 
-        int pass = 0;
         int goal = 0;
 
         for(Goals g : goals) {
-
             if(g.getTeamName().equals(team.getTeamName())) {
-
-                pass += g.getPassesList().size();
                 goal ++;
             }
         }
 
-        System.out.println("Team: " + team.getTeamName() +
-                           "\nTotal goals: " + goal +
-                           "\nTotal passes: " + pass);
+        System.out.println("Team: " + team.getTeamName());
+        System.out.println("Total goals: " + goal);
+        return goal;
     }
 
-    public void rankByGoals() {
+    public Map<Integer, List<String>> rankByGoals() {
 
         Map<Integer, List<String>> rank = new TreeMap<>(Collections.reverseOrder());
         List<Player> allPlayer = new ArrayList<>();
         allPlayer.addAll(homeTeam.getPlayerList());
         allPlayer.addAll(awayTeam.getPlayerList());
-
 
         for(Player player : allPlayer) {
 
@@ -157,6 +158,7 @@ public class Game {
         for (Map.Entry<Integer, List<String>> entry : rank.entrySet()) {
             System.out.println(String.format(entry.getKey() + "          " + entry.getValue()));
         }
+        return rank;
     }
 
     private int receiveCount(String player) {
@@ -207,20 +209,4 @@ public class Game {
         }
         return result;
     }
-
-    private List<String> playerNameList(Teams home, Teams away) {
-
-        List<Teams> temp = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-        temp.add(home);
-        temp.add(away);
-
-        for(Teams t : temp) {
-            for(Player p : t.getPlayerList()) {
-                result.add(p.getPlayerName());
-            }
-        }
-        return result;
-    }
-
 }
