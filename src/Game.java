@@ -8,16 +8,12 @@ public class Game {
     private List<Goals> goals;
 
     public Teams getHomeTeam() { return homeTeam; }
-
     public Teams getAwayTeam() { return awayTeam; }
-
     public String getWinner() { return winner; }
-
     public List<Goals> getGoals() { return goals; }
 
-    /**
-     *  functions
-     */
+
+    // Filtering Functions
 
     public void goalsInCertainTime(int currentTime) {
 
@@ -75,6 +71,20 @@ public class Game {
         }
     }
 
+    public void positionList(Teams team, String position) {
+
+        List<String> positionList = new ArrayList<>();
+        for(Player player : team.getPlayerList()) {
+            if(position.equals(player.getPlayerPosition())) {
+                positionList.add(player.getPlayerName());
+            }
+        }
+
+        System.out.println(position + ": " +positionList);
+    }
+
+    // Analysis Functions
+
     public void playerStats(String player) {
 
         int receive = receiveCount(player);
@@ -103,21 +113,21 @@ public class Game {
         System.out.println(result + " passes at timestamp " + timestamp);
     }
 
-    public void teamStats(String team) {
+    public void teamStats(Teams team) {
 
         int pass = 0;
         int goal = 0;
 
         for(Goals g : goals) {
 
-            if(g.getTeamName().equals(team)) {
+            if(g.getTeamName().equals(team.getTeamName())) {
 
                 pass += g.getPassesList().size();
                 goal ++;
             }
         }
 
-        System.out.println("Team: " + team +
+        System.out.println("Team: " + team.getTeamName() +
                            "\nTotal goals: " + goal +
                            "\nTotal passes: " + pass);
     }
@@ -153,11 +163,8 @@ public class Game {
 
         int result = 0;
         for(Goals goal : goals) {
-
             for(Passes pass : goal.getPassesList()) {
-
                 if(pass.getReceiver().equals(player)) {
-
                     result++;
                 }
             }
@@ -170,16 +177,12 @@ public class Game {
 
         int result = 0;
         for(Goals goal : goals) {
-
             for(Passes pass : goal.getPassesList()) {
-
                 if(pass.getPasser().equals(player)) {
-
                     result++;
                 }
             }
         }
-
         return result;
     }
 
@@ -187,13 +190,10 @@ public class Game {
 
         int result = 0;
         for(Goals goal : goals) {
-
             if(goal.getScorer().equals(player)) {
-
                 result++;
             }
         }
-
         return result;
     }
 
@@ -201,13 +201,10 @@ public class Game {
 
         int result = 0;
         for(Goals goal : goals) {
-
             if(goal.getAssist() != null && goal.getAssist().equals(player)) {
-
                 result++;
             }
         }
-
         return result;
     }
 
@@ -223,7 +220,6 @@ public class Game {
                 result.add(p.getPlayerName());
             }
         }
-
         return result;
     }
 

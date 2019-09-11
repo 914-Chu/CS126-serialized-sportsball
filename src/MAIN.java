@@ -7,11 +7,15 @@ public class MAIN {
 
         int TIMESTAMP = 40;
         String PLAYER = "Steven White";
-        String HOMETEAM = "Champaign United";
-        String AWAYTEAM = "Urbana International";
+        String POSITION = "Defender";
         String testFileContents = Data.getFileContents("test_resources", "sportsballtest");
         Gson gson = new Gson();
         Game game = gson.fromJson(testFileContents, Game.class);
+        Teams TEAM = game.getHomeTeam();
+
+        /**
+         *  filtering functions
+         */
 
         //game.goalsInCertainTime(TIMESTAMP);
 
@@ -19,11 +23,17 @@ public class MAIN {
 
         //game.goalsDetail();
 
+        //game.positionList(TEAM, POSITION);
+
+        /**
+         *  analysis functions
+         */
+
         //game.playerStats(PLAYER);
 
         //game.passesPerGoal(TIMESTAMP);
 
-        //game.teamStats(HOMETEAM);
+        //game.teamStats(TEAM);
 
         //game.rankByGoals();
 

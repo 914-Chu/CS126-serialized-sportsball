@@ -102,6 +102,7 @@ public class DataTest {
         int GOAL = rand.nextInt(goalList.size());
         List<Passes> passesList = goalList.get(GOAL).getPassesList();
         int LAST_PASS = passesList.size() - 1;
+
         String SCORER = goalList.get(GOAL).getScorer();
         String ASSIST = goalList.get(GOAL).getAssist();
         String LAST_RECEIVER = passesList.get(LAST_PASS).getReceiver();
@@ -111,6 +112,14 @@ public class DataTest {
         if(ASSIST != null) {
             assertEquals(ASSIST, LAST_PASSER);
         }
+    }
+
+    @Test
+    public void testGoalsInCertainTime() throws Exception {
+
+        Game deserialized = deserialize();
+        int TIMESTAMP = 50;
+        assertEquals(11, deserialized.goalsInCertainTime(TIMESTAMP));
     }
 
     private static Game deserialize() {
