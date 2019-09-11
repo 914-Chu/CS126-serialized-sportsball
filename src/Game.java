@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class Game {
 
     private Teams homeTeam;
@@ -81,7 +80,8 @@ public class Game {
         int receive = receiveCount(player);
         int pass = passCount(player);
         int score = scoreCount(player);
-        int assist = assistCount(player);
+        int assist = assistCount(
+                player);
 
         System.out.println(player + ":\n" +
                            "receive: " + receive +
@@ -122,12 +122,31 @@ public class Game {
                            "\nTotal passes: " + pass);
     }
 
-    public void ageStats(String team) {
+    public void rankByGoals() {
 
-        int total = 0;
-        int min, max;
+        Map<Integer, List<String>> rank = new TreeMap<>(Collections.reverseOrder());
+        List<Player> allPlayer = new ArrayList<>();
+        allPlayer.addAll(homeTeam.getPlayerList());
+        allPlayer.addAll(awayTeam.getPlayerList());
 
 
+        for(Player player : allPlayer) {
+
+            String name = player.getPlayerName();
+            int goals = scoreCount(name);
+            if(rank.containsKey(goals)) {
+                rank.get(goals).add(name);
+            }else{
+                List<String> temp = new ArrayList<>();
+                temp.add(name);
+                rank.put(goals, temp);
+            }
+        }
+
+        System.out.println("Goals:     " + "Players:" );
+        for (Map.Entry<Integer, List<String>> entry : rank.entrySet()) {
+            System.out.println(String.format(entry.getKey() + "          " + entry.getValue()));
+        }
     }
 
     private int receiveCount(String player) {
@@ -186,6 +205,22 @@ public class Game {
             if(goal.getAssist() != null && goal.getAssist().equals(player)) {
 
                 result++;
+            }
+        }
+
+        return result;
+    }
+
+    private List<String> playerNameList(Teams home, Teams away) {
+
+        List<Teams> temp = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+        temp.add(home);
+        temp.add(away);
+
+        for(Teams t : temp) {
+            for(Player p : t.getPlayerList()) {
+                result.add(p.getPlayerName());
             }
         }
 

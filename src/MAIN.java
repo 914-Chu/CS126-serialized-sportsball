@@ -25,7 +25,7 @@ public class MAIN {
 
         //game.teamStats(HOMETEAM);
 
-        //game.ageStats(AWAYTEAM);
+        //game.rankByGoals();
 
     }
 

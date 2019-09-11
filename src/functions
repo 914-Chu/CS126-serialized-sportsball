@@ -1,10 +1,11 @@
 List of all goals with timestamp V
 List of goals without assist V
 map of goals(time stamp and scorer list) V
+position count
 
 map of player name and receive, pass, score V
 numbers of passes in certain goal V
 array of team stats(receive, pass, score) V
-array of team age stats
+rank by goals V
 
 
