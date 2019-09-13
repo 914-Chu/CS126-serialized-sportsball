@@ -18,4 +18,4 @@ Commit messages should be more meaningful than "version1", "version2"
 
 Would love to hear you participate more when others are presenting!
 
-## Grade Total: 86/100
+## Grade Total: 82/100
